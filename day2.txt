@@ -1,0 +1,67 @@
+===========================================================================================================================
+
+Given a string, Your task is to  complete the function encode that returns the run length encoded string for the given string.
+eg if the input string is “wwwwaaadexxxxxx”, then the function should return “w4a3d1e1x6″.(Modified version of question named Cute Monkeys)
+
+
+string encode(string src)
+{     
+  //Your code here 
+     string temp="";
+  int c=1;
+  temp+=src[0];
+  for(int i=1;i<src.size();i++){
+      if(src[i]==src[i-1]){
+          c++;
+      }else{
+          temp+=to_string(c);
+          temp+=src[i];
+          c=1;
+      }
+  }
+  temp+=to_string(c);
+  return temp;
+  
+} 
+
+
+===========================================================================================================================
+
+Program to find Nth Ugly Number.
+
+	/* Function to get the nth ugly number*/
+	ull getNthUglyNo(int n) {
+	    // code here
+	    
+	    if(n <= 0) return false; // get rid of corner cases 
+        if(n == 1) return true; // base case
+        ull t2 = 0, t3 = 0, t5 = 0; //pointers for 2, 3, 5
+        vector<ull> k(n);
+        k[0] = 1;
+        for(int i  = 1; i < n ; i ++)
+        {
+            k[i] = min(k[t2]*2,min(k[t3]*3,k[t5]*5));
+            if(k[i] == k[t2]*2) t2++; 
+            if(k[i] == k[t3]*3) t3++;
+            if(k[i] == k[t5]*5) t5++;
+        }
+        return k[n-1];
+	}
+
+===========================================================================================================================
+
+  Given two strings str1 and str2. We say that str2 divides str1 if it's possible
+
+            to          concatenate multiple str2 to get str1. For example, ab divides abab.
+
+           if str2 does not divide str1, return -1. Otherwise, return the smallest string
+
+           str3 such that str3 divides both str1 and str2.
+
+    
+string gcdOfStrings(string s1, string s2) {
+        return (s1 + s2 == s2 + s1)  
+		    ? s1.substr(0, gcd(size(s1), size(s2)))
+			: "";
+        
+    }
